@@ -16,6 +16,16 @@ exports.BookController = void 0;
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const book_service_1 = require("./book.service");
+const createBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = req.body;
+    const result = yield book_service_1.BookServiceWrapper.createBook(data);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "books created successfully",
+        data: result,
+    });
+}));
 const getAllBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield book_service_1.BookServiceWrapper.getAllBooks();
     (0, sendResponse_1.default)(res, {
@@ -72,6 +82,7 @@ const deleteBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     });
 }));
 exports.BookController = {
+    createBook,
     getAllBooks,
     getSingleBook,
     updateSingleBook,

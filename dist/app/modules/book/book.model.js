@@ -7,6 +7,5 @@ const bookSchema = new mongoose_1.Schema({
     author: { type: String, required: true },
     genre: { type: String, required: true },
     publicationDate: { type: String, required: true },
-    reviews: { type: [String] },
 }, { timestamps: true });
 exports.Book = (0, mongoose_1.model)("Book", bookSchema);

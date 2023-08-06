@@ -26,7 +26,7 @@ function main() {
             yield mongoose_1.default.connect(config_1.default.database_url);
             console.log("Database connection successful");
             server = app_1.default.listen(config_1.default.port, () => {
-                console.log(`Assignment app listening on port ${config_1.default.port}`);
+                console.log(`Book catalog app listening on port ${config_1.default.port}`);
             });
         }
         catch (error) {
@@ -46,9 +46,9 @@ function main() {
     });
 }
 main();
-process.on("SIGTERM", () => {
-    console.log("SIGTERM is received");
-    if (server) {
-        server.close();
-    }
-});
+// process.on("SIGTERM", () => {
+//   console.log("SIGTERM is received");
+//   if (server) {
+//     server.close();
+//   }
+// });
