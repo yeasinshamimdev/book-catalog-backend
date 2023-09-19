@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
+import pick from "../../../shared/pick";
 import sendResponse from "../../../shared/sendResponse";
+import { bookFilterableFields, paginationFields } from "./book.constants";
 import { IBook } from "./book.interface";
 import { BookServiceWrapper } from "./book.service";
 
@@ -17,13 +20,20 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBooks = catchAsync(async (req: Request, res: Response) => {
-  const result = await BookServiceWrapper.getAllBooks();
+  const filters = pick(req.query, bookFilterableFields);
+  const paginationOptions = pick(req.query, paginationFields);
+
+  const result = await BookServiceWrapper.getAllBooks(
+    filters,
+    paginationOptions
+  );
 
   sendResponse<IBook[]>(res, {
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     success: true,
-    message: "books retrieved successfully",
-    data: result,
+    message: "Academic faculties fetched successfully",
+    meta: result.meta,
+    data: result.data,
   });
 });
 

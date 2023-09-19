@@ -14,4 +14,8 @@ export type IBook = {
   reviews?: IReview[];
 };
 
+export type IBookFilters = {
+  searchTerm?: string;
+};
+
 export type BookModel = Model<IBook, Record<string, unknown>>;
