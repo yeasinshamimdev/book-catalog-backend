@@ -31,7 +31,7 @@ const getAllBooks = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Academic faculties fetched successfully",
+    message: "all books fetched successfully",
     meta: result.meta,
     data: result.data,
   });
@@ -44,7 +44,7 @@ const getSingleBook = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook>(res, {
     statusCode: 200,
     success: true,
-    message: "Single book retrive successfull",
+    message: "Single book retrieve successful",
     data: result,
   });
 });
